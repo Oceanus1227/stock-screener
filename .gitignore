@@ -1,0 +1,9 @@
+logs/
+__pycache__/
+*.pyc
+.env
+.DS_Store
+backtest_report.html
+*.log
+.vscode/
+.idea/
