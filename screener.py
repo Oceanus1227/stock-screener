@@ -46,6 +46,9 @@ def main():
             result = screener.screen_stock(code)
             if result:
                 stock_info = fetcher.get_stock_list()
+                if stock_info.empty:
+                    print("无法获取股票基础信息")
+                    break
                 info = stock_info[stock_info['code'] == code]
                 if not info.empty:
                     result['name'] = info.iloc[0]['name']
