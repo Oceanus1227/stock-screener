@@ -10,12 +10,19 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
+
     - uses: actions/setup-python@v4
       with:
         python-version: '3.10'
-    - run: pip install -r requirements.txt
-    - name: Run screener
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt        
+
+    - name: Run stock screener
       env:
         FEISHU_WEBHOOK_URL: ${{ secrets.FEISHU_WEBHOOK_URL }}
         KIMI_API_KEY: ${{ secrets.KIMI_API_KEY }}
-      run: python screener.py --max 100
+        USE_BACKUP_DATA: "true"
+      run: python screener.py --max 50
